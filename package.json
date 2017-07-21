@@ -1,7 +1,7 @@
 {
   "name": "react-ts-starter",
   "version": "0.1.0",
-  "description": "Very simple raact typescript starter kit.",
+  "description": "Very simple react typescript starter kit",
   "private": true,
   "main": "build/index.js",
   "types": "build/index.ts",
