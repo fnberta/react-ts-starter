@@ -3,14 +3,19 @@
   "version": "0.1.0",
   "description": "Very simple react typescript starter kit",
   "private": true,
+  "author": "Fabio Berta",
+  "license": "Apache-2.0",
   "main": "build/index.js",
   "types": "build/index.ts",
   "scripts": {
     "dev": "webpack-dev-server --hot",
     "build": "rm -rf build && NODE_ENV=production webpack"
   },
-  "author": "Fabio Berta",
-  "license": "Apache-2.0",
+  "dependencies": {
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-router-dom": "^4.1.2"
+  },
   "devDependencies": {
     "@types/html-webpack-plugin": "^2.28.0",
     "@types/node": "^8.0.14",
@@ -26,10 +31,5 @@
     "url-loader": "^0.5.9",
     "webpack": "^3.3.0",
     "webpack-dev-server": "^2.5.1"
-  },
-  "dependencies": {
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "react-router-dom": "^4.1.2"
   }
 }

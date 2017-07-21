@@ -13,9 +13,6 @@
       "dom"
     ]
   },
-  "include": [
-    "src/**/*.tsx"
-  ],
   "exclude": [
     "node_modules",
     "**/*.story.tsx"
