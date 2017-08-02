@@ -27,6 +27,15 @@ const config: webpack.Configuration = {
     rules: [
       {
         test: /\.tsx?$/,
+        enforce: 'pre',
+        loader: 'tslint-loader',
+        options: {
+          emitErrors: true,
+          failOnHint: true,
+        },
+      },
+      {
+        test: /\.tsx?$/,
         loader: 'awesome-typescript-loader',
         exclude: /node_modules/,
       },
