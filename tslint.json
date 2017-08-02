@@ -19,6 +19,7 @@
       true,
       120
     ],
-    "no-any": true
+    "no-any": true,
+    "object-literal-sort-keys": false
   }
 }
