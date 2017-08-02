@@ -1,6 +1,6 @@
+import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 import { resolve } from 'path';
 import * as webpack from 'webpack';
-import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 
 const NODE_ENV = process.env.NODE_ENV;
 const SRC_DIR = resolve(__dirname, 'src');
@@ -44,7 +44,6 @@ const config: webpack.Configuration = {
       template: resolve(PUBLIC_DIR, 'index.html'),
       inject: 'body',
     }),
-    new webpack.optimize.UglifyJsPlugin(),
   ],
   devServer: {
     compress: true,
