@@ -2,22 +2,22 @@
   "defaultSeverity": "error",
   "extends": [
     "tslint:recommended",
-    "tslint-react"
+    "tslint-react",
+    "tslint-plugin-prettier",
+    "tslint-config-prettier"
   ],
   "rules": {
+    "prettier": [
+      true,
+      {
+        "printWidth": 120,
+        "singleQuote": true,
+        "trailingComma": "all"
+      }
+    ],
     "interface-name": [
       true,
       "never-prefix"
-    ],
-    "quotemark": [
-      true,
-      "single",
-      "jsx-double",
-      "avoid-escape"
-    ],
-    "max-line-length": [
-      true,
-      120
     ],
     "no-any": true,
     "object-literal-sort-keys": false,
@@ -26,19 +26,15 @@
       true,
       "log"
     ],
-    "arrow-parens": [
-      true,
-      "ban-single-arg-parens"
-    ],
-    "object-literal-key-quotes": [
-      true,
-      "as-needed"
-    ],
     "typedef": [
       true,
-      "call-signature",
       "parameter",
       "member-variable-declaration"
-    ]
+    ],
+    "no-namespace": [
+      true,
+      "allow-declarations"
+    ],
+    "jsx-no-lambda": false
   }
 }

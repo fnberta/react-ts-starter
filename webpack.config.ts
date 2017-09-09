@@ -10,10 +10,23 @@ const DEV_API_PROXY_URL = 'http://localhost:3001';
 
 const isProd = NODE_ENV === 'production';
 
+const commonPlugins = [
+  new HtmlWebpackPlugin({
+    template: resolve(PUBLIC_DIR, 'index.html'),
+    inject: 'body',
+  }),
+];
+
+const prodPlugins = [
+  new webpack.optimize.UglifyJsPlugin({
+    sourceMap: true,
+  }),
+];
+
+const plugins = isProd ? commonPlugins.concat(prodPlugins) : commonPlugins;
+
 const config: webpack.Configuration = {
-  entry: [
-    resolve(SRC_DIR, 'index.tsx'),
-  ],
+  entry: [resolve(SRC_DIR, 'index.tsx')],
   output: {
     path: BUILD_DIR,
     filename: 'bundle.js',
@@ -22,7 +35,7 @@ const config: webpack.Configuration = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json', '.jsx'],
   },
-  devtool: isProd ? 'source-map' : 'eval',
+  devtool: isProd ? 'source-map' : 'eval-source-map',
   module: {
     rules: [
       {
@@ -48,12 +61,7 @@ const config: webpack.Configuration = {
       },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: resolve(PUBLIC_DIR, 'index.html'),
-      inject: 'body',
-    }),
-  ],
+  plugins,
   devServer: {
     compress: true,
     port: 9000,
