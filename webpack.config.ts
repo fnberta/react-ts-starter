@@ -43,8 +43,8 @@ const config: webpack.Configuration = {
         enforce: 'pre',
         loader: 'tslint-loader',
         options: {
-          emitErrors: true,
-          failOnHint: true,
+          emitErrors: isProd,
+          failOnHint: isProd,
         },
       },
       {
