@@ -1,26 +1,27 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "commonjs",
+    "module": "esnext",
     "outDir": "build",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "strict": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
-    "pretty": true,
+    "skipLibCheck": true,
     "jsx": "react",
     "lib": [
       "es2015",
+      "es2016.array.include",
+      "es2017.object",
       "dom"
     ]
   },
   "include": [
     "src/**/*",
-    "typings/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "**/*.story.tsx"
+    "typings/**/*",
+    "webpack.config.ts"
   ]
 }

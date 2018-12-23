@@ -29,6 +29,8 @@
     "typedef": [
       true,
       "parameter",
+      "arrow-parameter",
+      "property-declaration",
       "member-variable-declaration"
     ],
     "no-namespace": [
