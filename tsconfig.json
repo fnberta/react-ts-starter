@@ -2,8 +2,8 @@
   "compilerOptions": {
     "target": "es5",
     "module": "esnext",
-    "outDir": "build",
     "moduleResolution": "node",
+    "outDir": "build",
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "strict": true,
@@ -12,16 +12,6 @@
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
     "jsx": "react",
-    "lib": [
-      "es2015",
-      "es2016.array.include",
-      "es2017.object",
-      "dom"
-    ]
-  },
-  "include": [
-    "src/**/*",
-    "typings/**/*",
-    "webpack.config.ts"
-  ]
+    "lib": ["es2015", "es2016.array.include", "es2017.object", "dom"]
+  }
 }
