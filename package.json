@@ -6,13 +6,13 @@
   "author": "Fabio Berta",
   "license": "Apache-2.0",
   "main": "build/index.js",
-  "types": "build/index.d.ts",
   "scripts": {
-    "dev": "TS_NODE_PROJECT=tsconfig.webpack.json TS_NODE_FILES=true webpack-dev-server --hot",
+    "dev": "webpack-dev-server --hot",
     "typecheck": "tsc --noEmit",
     "typecheck:build": "tsc --noEmit -p tsconfig.build.json",
     "lint": "tslint --fix 'src/**/*.{ts,tsx}'",
-    "build": "rm -rf build && NODE_ENV=production TS_NODE_PROJECT=tsconfig.webpack.json TS_NODE_FILES=true webpack -p"
+    "format": "prettier --write '**/*.{js,jsx,ts,tsx,json,css,scss,sass,md,yml}'",
+    "build": "rm -rf build && NODE_ENV=production webpack -p"
   },
   "dependencies": {
     "react": "^16.8.6",
@@ -20,15 +20,10 @@
     "react-router-dom": "^5.0.1"
   },
   "devDependencies": {
-    "@types/html-webpack-plugin": "^3.2.0",
-    "@types/mini-css-extract-plugin": "^0.2.1",
     "@types/node": "^12.0.7",
     "@types/react": "^16.8.19",
     "@types/react-dom": "^16.8.4",
     "@types/react-router-dom": "^4.3.3",
-    "@types/webpack": "^4.4.32",
-    "@types/webpack-dev-server": "^3.1.6",
-    "awesome-typescript-loader": "^5.2.1",
     "css-loader": "^2.1.1",
     "file-loader": "^4.0.0",
     "html-webpack-plugin": "^3.2.0",
@@ -37,11 +32,10 @@
     "mini-css-extract-plugin": "^0.7.0",
     "prettier": "^1.18.2",
     "style-loader": "^0.23.1",
+    "ts-loader": "^6.0.2",
     "ts-node": "^8.2.0",
     "tslint": "^5.17.0",
     "tslint-config-prettier": "^1.18.0",
-    "tslint-loader": "^3.5.4",
-    "tslint-plugin-prettier": "^2.0.1",
     "tslint-react": "^4.0.0",
     "typescript": "^3.5.1",
     "url-loader": "^2.0.0",
@@ -55,8 +49,13 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{ts,tsx,json}": [
+    "src/**/*.{ts,tsx}": [
       "tslint --fix",
+      "prettier --write",
+      "git add"
+    ],
+    "**/*.{js,jsx,json,css,scss,sass,md,yml}": [
+      "prettier --write",
       "git add"
     ]
   }

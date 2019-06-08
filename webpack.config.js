@@ -1,7 +1,6 @@
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import { resolve } from 'path';
-import * as webpack from 'webpack';
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { resolve } = require('path');
 
 const { NODE_ENV } = process.env;
 
@@ -12,22 +11,18 @@ const DEV_API_PROXY_URL = 'http://localhost:3001';
 
 const PRODUCTION = NODE_ENV === 'production';
 
-const commonPlugins = [
+const plugins = [
   new HtmlWebpackPlugin({
-    template: resolve(PUBLIC_DIR, 'index.html'),
-    inject: 'body',
+    title: 'React TS Starter Kit',
+    template: resolve(PUBLIC_DIR, 'index.ejs'),
   }),
 ];
 
-const prodPlugins = [
-  new MiniCssExtractPlugin({
-    filename: '[name].css',
-  }),
-];
+if (PRODUCTION) {
+  plugins.push(new MiniCssExtractPlugin({ filename: '[name].css' }));
+}
 
-const plugins = PRODUCTION ? commonPlugins.concat(prodPlugins) : commonPlugins;
-
-const config: webpack.Configuration = {
+module.exports = {
   mode: PRODUCTION ? 'production' : 'development',
   entry: [resolve(SRC_DIR, 'index.tsx')],
   output: {
@@ -43,19 +38,11 @@ const config: webpack.Configuration = {
     rules: [
       {
         test: /\.tsx?$/,
-        enforce: 'pre',
-        loader: 'tslint-loader',
-        options: {
-          emitErrors: PRODUCTION,
-          failOnHint: PRODUCTION,
-        },
-      },
-      {
-        test: /\.tsx?$/,
-        loader: 'awesome-typescript-loader',
+        loader: 'ts-loader',
         exclude: /node_modules/,
         options: {
-          configFileName: PRODUCTION ? 'tsconfig.build.json' : 'tsconfig.json',
+          configFile: PRODUCTION ? 'tsconfig.build.json' : 'tsconfig.json',
+          onlyCompileBundledFiles: true,
         },
       },
       {
@@ -92,5 +79,3 @@ const config: webpack.Configuration = {
     },
   },
 };
-
-export default config;
